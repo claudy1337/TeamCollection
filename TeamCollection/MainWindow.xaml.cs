@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using TeamCollection.DB;
+
 
 namespace TeamCollection
 {
@@ -45,5 +47,40 @@ namespace TeamCollection
 
             await collection.InsertManyAsync(new[] { person1 });
         }
+
+
+        private async void BSaveTeam_Click(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("testFurnitured");
+            var collection = database.GetCollection<BsonDocument>("User");
+            var filter = new BsonDocument();
+            var people = await collection.Find(filter).ToListAsync();
+            foreach (var doc in people)
+            {
+                DGProducts.ItemsSource = database.GetCollection<BsonDocument>("User").ToString();
+
+            }
+
+
+
+        }
+
+        private async void DGProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("testFurnitured");
+            var collection = database.GetCollection<BsonDocument>("User");
+            var filter = new BsonDocument();
+            var people = await collection.Find(filter).ToListAsync();
+            foreach (var doc in people)
+            {
+                DGProducts.ItemsSource = doc.ToString();
+
+            }
+        }
     }
+
 }
