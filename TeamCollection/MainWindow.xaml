@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         WindowState="Normal"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="550" Width="850">
+        Title="MainWindow" Height="580" Width="850"
+        MaxHeight="580" MaxWidth="850"
+        MinHeight="580" MinWidth="850">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,8 +29,8 @@
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Login" Width="100" DisplayMemberBinding="{Binding Path=ModelName}"></GridViewColumn>
-                            <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Path=ModelNumber}"></GridViewColumn>
+                            <GridViewColumn x:Name="ULogin" Header="Login" Width="100" DisplayMemberBinding="{Binding Path=ModelName}"></GridViewColumn>
+                            <GridViewColumn Header="Name" x:Name="UName" Width="100" DisplayMemberBinding="{Binding Path=ModelNumber}"></GridViewColumn>
                             
                         </GridView.Columns>
                     </GridView>
@@ -39,21 +41,21 @@
         <StackPanel Grid.Row="1" Grid.Column="0">
             <TextBlock Text="Registration User" FontSize="20"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="190">
-                <TextBlock Text="Login"/>
-                <TextBox  Height="30"/>
+                <TextBlock FontSize="15" Text="Login"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBULogin"/>
 
-                <TextBlock Text="Name"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="Name"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBUName"/>
 
-                <TextBlock Text="LastName"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="LastName"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBULastName"/>
 
-                <TextBlock Text="Number"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="Number"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBUNumber"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <Button Content="AddUser" Height="30" Width="90"/>
-                    <Button Content="Remove" Margin="10,0,0,0" Width="90"/>
+                    <Button FontSize="15" Content="AddUser" x:Name="BAddUser" Height="30" Width="90"/>
+                    <Button FontSize="15" Content="Remove" Margin="10,0,0,0" x:Name="BRemove" Width="90"/>
                 </StackPanel>
                 
             </StackPanel>
@@ -62,39 +64,47 @@
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock Text="Team Stack" FontSize="20"/>
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="40"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="№" FontSize="15" Margin="0,10,0,0"/>
-                    <TextBlock Text="1" FontSize="15" Margin="0,10,0,0"/>
-                    <TextBlock Text="2" FontSize="15" Margin="0,10,0,0"/>
-                    <TextBlock Text="3" FontSize="15" Margin="0,10,0,0"/>
-                    <TextBlock Text="4" FontSize="15" Margin="0,10,0,0"/>
-                    <TextBlock Text="5" FontSize="15" Margin="0,10,0,0"/>
+                <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock Text="№" FontSize="20"/>
+                    <TextBlock Text="1" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBlock Text="2" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBlock Text="3" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBlock Text="4" FontSize="20" Margin="0,10,0,0"/>
+                    <TextBlock Text="5" FontSize="20" Margin="0,10,0,0"/>
                 </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="NickName" FontSize="15"/>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text="Name" FontSize="20"/>
+                    <TextBox FontSize="20" Width="190" Margin="0,8,0,0"/>
+                    <TextBox FontSize="20" Margin="0,10,0,0"/>
+                    <TextBox FontSize="20" Margin="0,8,0,0"/>
+                    <TextBox FontSize="20" Margin="0,8,0,0"/>
+                    <TextBox FontSize="20" Margin="0,8,0,0"/>
                 </StackPanel>
-                
             </Grid>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Registration Team" FontSize="20"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="190">
-                <TextBlock Text="Team Name"/>
-                <TextBox  Height="30"/>
+                <TextBlock FontSize="15" Text="Team Name"/>
+                <TextBox  Height="30" FontSize="20" x:Name="TBTeamName"/>
 
-                <Button Content="Save New Team" Height="30" Margin="0,10,0,0"/>
-                <Button Content="Random Team" Height="30" Margin="0,10,0,0"/>
-                <Button Content="AddUser" Height="30" Margin="0,10,0,0"/>
+                <Button FontSize="15" Content="Clear" Height="30" x:Name="BClear" Margin="0,10,0,0"/>
+                <Button FontSize="15" Content="Random Team" Height="30" x:Name="BRandomTeam" Margin="0,10,0,0"/>
+                <Button FontSize="15" Content="AddUser" Height="30" x:Name="BUserAddTeam" Margin="0,10,0,0"/>
                 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <Button Content="Save" Height="30" Width="90"/>
-                    <Button Content="Update" Margin="10,0,0,0" Width="90"/>
+                    <Button FontSize="15" Content="Save" x:Name="BSaveTeam" Height="30" Width="90"/>
+                    <Button FontSize="15" Content="Update" x:Name="BUpdateTeam" Margin="10,0,0,0" Width="90"/>
                 </StackPanel>
 
             </StackPanel>
@@ -102,11 +112,11 @@
 
         <StackPanel Grid.Row="0" Grid.Column="3">
             <TextBlock Text="Team List" FontSize="20"/>
-            <ListView Name="lstwTeam" Margin="5">
+            <ListView Name="lstwTeam" Margin="0,10,0,0">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Team Name" DisplayMemberBinding="{Binding Path=ModelName}"></GridViewColumn>
+                            <GridViewColumn Width="100" Header="Team Name" DisplayMemberBinding="{Binding Path=ModelName}"></GridViewColumn>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
@@ -116,21 +126,21 @@
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock Text="User Info" FontSize="20"/>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Width="190">
-                <TextBlock Text="Login"/>
-                <TextBox  Height="30"/>
+                <TextBlock FontSize="15" Text="Login"/>
+                <TextBox FontSize="20"  Height="30" x:Name="TBLogin"/>
 
-                <TextBlock Text="Name"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="Name"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBName"/>
 
-                <TextBlock Text="LastName"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="LastName"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBLastName"/>
 
-                <TextBlock Text="Number"/>
-                <TextBox Height="30"/>
+                <TextBlock FontSize="15" Text="Number"/>
+                <TextBox FontSize="20" Height="30" x:Name="TBNumber"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <Button Content="UpdateUser" Height="30" Width="90"/>
-                    <Button Content="Clear" Margin="10,0,0,0" Width="90"/>
+                    <Button FontSize="15" Content="UpdateUser" x:Name="BUpdateUser" Height="30" Width="90"/>
+                    <Button FontSize="15" Content="Clear" x:Name="BClearUser" Margin="10,0,0,0" Width="90"/>
                 </StackPanel>
 
             </StackPanel>
