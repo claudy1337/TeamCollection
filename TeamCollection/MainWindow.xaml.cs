@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace TeamCollection
 {
@@ -23,6 +25,25 @@ namespace TeamCollection
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void BAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            string connectionString = "mongodb://localhost";
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("TeamCollection");
+            var collection = database.GetCollection<BsonDocument>("User");
+
+            BsonDocument person1 = new BsonDocument
+            {
+                {"Login", TBULogin.Text},
+                {"Name", TBUName.Text},
+                {"LastName", TBULastName.Text },
+                {"Number", TBUNumber.Text},
+                {"HasTeam", false }
+            };
+
+            await collection.InsertManyAsync(new[] { person1 });
         }
     }
 }

@@ -54,7 +54,7 @@
                 <TextBox FontSize="20" Height="30" x:Name="TBUNumber"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <Button FontSize="15" Content="AddUser" x:Name="BAddUser" Height="30" Width="90"/>
+                    <Button FontSize="15" Content="AddUser" x:Name="BAddUser" Height="30" Width="90" Click="BAddUser_Click"/>
                     <Button FontSize="15" Content="Remove" Margin="10,0,0,0" x:Name="BRemove" Width="90"/>
                 </StackPanel>
                 
