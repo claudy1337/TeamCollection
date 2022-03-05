@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using TeamCollection.DB;
+using MongoDB.Bson.Serialization.Attributes;
+
 
 
 namespace TeamCollection
@@ -24,9 +26,12 @@ namespace TeamCollection
     /// </summary>
     public partial class MainWindow : Window
     {
+        User user = new User("Name", "Login", "LastName", "Number", true);
         public MainWindow()
         {
             InitializeComponent();
+            listLogin.ItemsSource = User.GetLoginList();
+
         }
 
         private async void BAddUser_Click(object sender, RoutedEventArgs e)
@@ -48,38 +53,14 @@ namespace TeamCollection
             await collection.InsertManyAsync(new[] { person1 });
         }
 
-
-        private async void BSaveTeam_Click(object sender, RoutedEventArgs e)
+        private void listLogin_Loaded(object sender, RoutedEventArgs e)
         {
-            string connectionString = "mongodb://localhost";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("testFurnitured");
-            var collection = database.GetCollection<BsonDocument>("User");
-            var filter = new BsonDocument();
-            var people = await collection.Find(filter).ToListAsync();
-            foreach (var doc in people)
-            {
-                DGProducts.ItemsSource = database.GetCollection<BsonDocument>("User").ToString();
-
-            }
-
-
-
+           
         }
 
-        private async void DGProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listLogin_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string connectionString = "mongodb://localhost";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("testFurnitured");
-            var collection = database.GetCollection<BsonDocument>("User");
-            var filter = new BsonDocument();
-            var people = await collection.Find(filter).ToListAsync();
-            foreach (var doc in people)
-            {
-                DGProducts.ItemsSource = doc.ToString();
-
-            }
+            
         }
     }
 
