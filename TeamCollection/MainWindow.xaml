@@ -75,11 +75,11 @@
 
                 <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,20,0,0">
                     <TextBlock Text="Name" FontSize="20"/>
-                    <TextBox  Width="190" Margin="0,8,0,0"/>
-                    <TextBox Margin="0,10,0,0"/>
-                    <TextBox Margin="0,8,0,0"/>
-                    <TextBox Margin="0,8,0,0"/>
-                    <TextBox Margin="0,8,0,0"/>
+                    <TextBox  Width="190" Margin="0,8,0,0" x:Name="TeamateOne"/>
+                    <TextBox Margin="0,10,0,0" x:Name="TeamateTwo"/>
+                    <TextBox Margin="0,8,0,0" x:Name="TeamateThree"/>
+                    <TextBox Margin="0,8,0,0" x:Name="TeamateFour"/>
+                    <TextBox Margin="0,8,0,0" x:Name="TeamateFive"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
@@ -91,7 +91,7 @@
                 <TextBox x:Name="TBTeamName"/>
 
                 <Button  Content="Clear" Width="150" x:Name="BClearTeam" Margin="0,10,0,0"/>
-                <Button  Content="Random Team" Width="150" x:Name="BRandomTeam" Margin="0,10,0,0"/>
+                <Button  Content="Random Team" Width="150" x:Name="BRandomTeam" Margin="0,10,0,0" Click="BRandomTeam_Click"/>
                 <Button  Content="AddUser" Width="150"  x:Name="BUserAddTeam" Margin="0,10,0,0"/>
                 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">

@@ -26,7 +26,7 @@ namespace TeamCollection
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+        string[] teamList = new string[5] { "One", "Two", "Three", "Four", "Five" };
         User user = new User("Name", "Login", "LastName", "Number", false);
         public MainWindow()
         {
@@ -113,9 +113,33 @@ namespace TeamCollection
 
             var people = await collection.Find(new BsonDocument()).ToListAsync();
             foreach (var p in people)
-                MessageBox.Show($"Deleted user: {TBLogin.Text}");
+                
 
             Refresh();
+        }
+
+        private void BRandomTeam_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<string> buffer = User.GetLoginList();
+
+                Random rnd = new Random();
+                for (int i = 0; i < teamList.Length; i++)
+                {
+                    teamList[i] = buffer[rnd.Next(0, buffer.Count)];
+                    buffer.Remove(teamList[i]);
+                }
+                TeamateOne.Text = teamList[0];
+                TeamateTwo.Text = teamList[1];
+                TeamateThree.Text = teamList[2];
+                TeamateFour.Text = teamList[3];
+                TeamateFive.Text = teamList[4];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 
