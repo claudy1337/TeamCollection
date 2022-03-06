@@ -25,7 +25,7 @@
 
         <StackPanel Grid.Row="0" Grid.Column="0" Background="Beige">
             <TextBlock Text="List User" FontSize="20"/>
-            <ListBox FontFamily="Ubuntu" FontSize="15" x:Name="listLogin" Height="100" Loaded="listLogin_Loaded" SelectionChanged="listLogin_SelectionChanged"/>
+            <ListBox FontFamily="Ubuntu" FontSize="15" x:Name="listLogin" Height="259" Loaded="listLogin_Loaded" SelectionChanged="listLogin_SelectionChanged" ItemsSource="{Binding Elements}"/>
 
 
         </StackPanel>
@@ -47,7 +47,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
                     <Button  Content="AddUser" x:Name="BAddUser" Click="BAddUser_Click"/>
-                    <Button  Content="Remove" Margin="10,0,0,0" x:Name="BRemove"/>
+                    <Button  Content="Clear" Margin="10,0,0,0" x:Name="BClear" Click="BClear_Click"/>
                 </StackPanel>
                 
             </StackPanel>
@@ -90,7 +90,7 @@
                 <TextBlock FontSize="15" Text="Team Name"/>
                 <TextBox x:Name="TBTeamName"/>
 
-                <Button  Content="Clear" Width="150" x:Name="BClear" Margin="0,10,0,0"/>
+                <Button  Content="Clear" Width="150" x:Name="BClearTeam" Margin="0,10,0,0"/>
                 <Button  Content="Random Team" Width="150" x:Name="BRandomTeam" Margin="0,10,0,0"/>
                 <Button  Content="AddUser" Width="150"  x:Name="BUserAddTeam" Margin="0,10,0,0"/>
                 
@@ -104,15 +104,8 @@
 
         <StackPanel Grid.Row="0" Grid.Column="3" Background="Lavender">
             <TextBlock Text="Team List" FontSize="20"/>
-            <ListView  Name="lstwTeam" Margin="10">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Width="100" Header="Team Name" DisplayMemberBinding="{Binding Path=ModelName}"></GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <ListBox x:Name="TeamList" Height="261"/>
+
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Background="LightSlateGray">
@@ -131,8 +124,8 @@
                 <TextBox x:Name="TBNumber"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                    <Button Content="UpdateUser" x:Name="BUpdateUser" />
-                    <Button  Content="SetUser" x:Name="SetUser" Margin="10,0,0,0" />
+                    <Button Content="UpdateUser" x:Name="BUpdateUser" Click="BUpdateUser_Click" />
+                    <Button  Content="Remove" x:Name="Remove" Click="Remove_Click"  Margin="10,0,0,0" />
                 </StackPanel>
 
             </StackPanel>

@@ -11,7 +11,7 @@ namespace TeamCollection.DB
 {
     class User
     {
-        public User(string name, string login, string lastname, string number, bool hasTeam)
+        public User(string login,string name,string lastname, string number, bool hasTeam)
         {
             Name = name;
             Login = login;
@@ -26,6 +26,9 @@ namespace TeamCollection.DB
         public string LastName { get; set; }
         public string Number { get; set; }
         public bool HasTeam { get; set; }
+
+        
+
         public static List<string> GetLoginList()
         {
             var client = new MongoClient("mongodb://localhost");
@@ -39,14 +42,17 @@ namespace TeamCollection.DB
             }
             return listToReturn;
         }
+
+        
         public static User GetUser(string name)
         {
             var client = new MongoClient("mongodb://localhost");
             var database = client.GetDatabase("TeamCollection");
             var collection = database.GetCollection<User>("User");
-            var foundedUser = collection.Find(x => x.Name == name).FirstOrDefault();
+            var foundedUser = collection.Find(x => x.Login == name).FirstOrDefault();
             return foundedUser;
         }
+       
 
     }
 }
