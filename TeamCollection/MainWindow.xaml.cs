@@ -16,6 +16,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using TeamCollection.DB;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver.Linq;
 
 
 
@@ -77,9 +78,22 @@ namespace TeamCollection
 
 
 
-        private void BUpdateUser_Click(object sender, RoutedEventArgs e)
+        private async void BUpdateUser_Click(object sender, RoutedEventArgs e)
         {
-            
+            var client = new MongoClient("mongodb://localhost");
+            var database = client.GetDatabase("TeamCollection");
+            var collection = database.GetCollection<BsonDocument>("User");
+            var result = await collection.ReplaceOneAsync(new BsonDocument("Login", TBLogin.Text),
+                new BsonDocument
+                {
+                    {"Login", TBLogin.Text },
+                    {"Name",TBName.Text},
+                    {"LastName", TBLastName.Text},
+                    {"Number", TBNumber.Text}
+                    
+                });
+            var people = await collection.Find(new BsonDocument()).ToListAsync();
+            Refresh();
         }
 
 
