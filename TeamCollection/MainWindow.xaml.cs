@@ -28,6 +28,7 @@ namespace TeamCollection
     public partial class MainWindow : Window
     {
         string[] teamList = new string[5] { "One", "Two", "Three", "Four", "Five" };
+        
         User user = new User("Name", "Login", "LastName", "Number", false);
         public MainWindow()
         {
@@ -136,13 +137,13 @@ namespace TeamCollection
         {
             try
             {
-                List<string> buffer = User.GetLoginList();
+                List<string> teams = User.GetLoginList();
 
                 Random rnd = new Random();
                 for (int i = 0; i < teamList.Length; i++)
                 {
-                    teamList[i] = buffer[rnd.Next(0, buffer.Count)];
-                    buffer.Remove(teamList[i]);
+                    teamList[i] = teams[rnd.Next(0, teams.Count)];
+                    teams.Remove(teamList[i]);
                 }
                 TeamateOne.Text = teamList[0];
                 TeamateTwo.Text = teamList[1];
@@ -154,6 +155,13 @@ namespace TeamCollection
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private async void BUserAddTeam_Click(object sender, RoutedEventArgs e)
+        {
+            TeamateOne.Text = User.GetUser(listLogin.SelectedItem.ToString()).Login;
+            //TeamateTwo.Text = User.GetUser(listLogin.SelectedItem.ToString()).Login;
+
         }
     }
 
