@@ -156,12 +156,77 @@ namespace TeamCollection
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        int count = 0;
         private async void BUserAddTeam_Click(object sender, RoutedEventArgs e)
         {
-            TeamateOne.Text = User.GetUser(listLogin.SelectedItem.ToString()).Login;
-            //TeamateTwo.Text = User.GetUser(listLogin.SelectedItem.ToString()).Login;
+            count++;
+            string[] teamUserList = new string[5] { "One", "Two", "Three", "Four", "Five" };
+            try
+            {
 
+                for (int i = 0; i < count; i++)
+                {
+                    if (listLogin.SelectedIndex != -1)
+                    {
+                        teamUserList[i] = listLogin.SelectedItem.ToString();
+                        switch (count)
+                        {
+                            case 1:
+                                TeamateOne.Text = teamUserList[i];
+                                break;
+                            case 2:
+                                TeamateTwo.Text = teamUserList[i];
+                                break;
+                            case 3:
+                                TeamateThree.Text = teamUserList[i];
+                                break;
+                            case 4:
+                                TeamateFour.Text = teamUserList[i];
+                                break;
+                            case 5:
+                                TeamateFive.Text = teamUserList[i];
+                                break;
+                            default:
+                                MessageBox.Show("фул тима или нехватает учатсников");
+                                count = 0;
+                                RefreshTeam();
+                                break;
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+
+                    
+                }
+
+                 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            //teamUserList[3] = User.GetUser(listLogin.SelectedItem.ToString()).Login;
+            //teamUserList[4] = User.GetUser(listLogin.SelectedItem.ToString()).Login;
+
+        }
+
+        private void BClearTeam_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshTeam();
+            Refresh();
+        }
+        public void RefreshTeam()
+        {
+            TBTeamName.Text = "";
+            TeamateOne.Text = "";
+            TeamateTwo.Text = "";
+            TeamateThree.Text = "";
+            TeamateFour.Text = "";
+            TeamateFive.Text = "";
         }
     }
 
