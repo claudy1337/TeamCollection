@@ -9,7 +9,14 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace TeamCollection.DB
 {
-    class Team
+    public class Team
     {
+        public Team(string name)
+        {
+            Name = name;
+        }
+        public ObjectId _id { get; set; }
+        public string Name { get; set; }
+
     }
 }

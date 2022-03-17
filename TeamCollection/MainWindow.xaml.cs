@@ -29,7 +29,7 @@ namespace TeamCollection
     {
         string[] teamList = new string[5] { "One", "Two", "Three", "Four", "Five" };
         
-        User user = new User("Name", "Login", "LastName", "Number", false);
+       // User user = new User("Name", "Login", "LastName", "Number", false, team1);
         public MainWindow()
         {
             InitializeComponent();
@@ -39,21 +39,26 @@ namespace TeamCollection
 
         private async void BAddUser_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = "mongodb://localhost";
-            var client = new MongoClient(connectionString);
-            var database = client.GetDatabase("TeamCollection");
-            var collection = database.GetCollection<BsonDocument>("User");
+            //string connectionString = "mongodb://localhost";
+            //var client = new MongoClient(connectionString);
+            //var database = client.GetDatabase("TeamCollection");
+            //var collection = database.GetCollection<BsonDocument>("User");
 
-            BsonDocument person1 = new BsonDocument
-            {
-                {"Login", TBULogin.Text},
-                {"Name", TBUName.Text},
-                {"LastName", TBULastName.Text },
-                {"Number", TBUNumber.Text},
-                {"HasTeam", false }
-            };
+            //BsonDocument person1 = new BsonDocument
+            //{
+            //    {"Login", TBULogin.Text},
+            //    {"Name", TBUName.Text},
+            //    {"LastName", TBULastName.Text },
+            //    {"Number", TBUNumber.Text},
+            //    {"HasTeam", false }
+            //};
 
-            await collection.InsertManyAsync(new[] { person1 });
+            //await collection.InsertManyAsync(new[] { person1 });
+            Team team1 = new Team("");
+            User user = new User(TBULogin.Text, TBUName.Text, TBULastName.Text, TBUNumber.Text, false, team1);
+            User.AddToDB(user);
+            MessageBox.Show($"Студент '{user.Name} ' был добавлен");
+
             Refresh();
         }
 

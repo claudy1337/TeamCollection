@@ -11,16 +11,18 @@ namespace TeamCollection.DB
 {
     class User
     {
-        public User(string login,string name,string lastname, string number, bool hasTeam)
+        public User(string login,string name,string lastname, string number, bool hasTeam, Team team)
         {
             Name = name;
             Login = login;
             LastName = lastname;
             Number = number;
             HasTeam = hasTeam;
+            Team = team;
            
         }
         public ObjectId _id { get; set; }
+        public Team Team { get; set; }
         public string Name { get; set; }
         public string Login { get; set; }
         public string LastName { get; set; }
@@ -52,7 +54,14 @@ namespace TeamCollection.DB
             var foundedUser = collection.Find(x => x.Login == name).FirstOrDefault();
             return foundedUser;
         }
-       
+        public static void AddToDB(User user)
+        {
+            var client = new MongoClient("mongodb://localhost");
+            var database = client.GetDatabase("TeamCollection");
+            var collection = database.GetCollection<User>("User");
+            collection.InsertOne(user);
+        }
+
 
     }
 }
